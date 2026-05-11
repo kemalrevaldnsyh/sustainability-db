@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Sustainability Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238B1A1A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-BRiVXCep.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-DYui-1Nt.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-BfVG3zYS.css">
+</head>
+<body>
+<div class="page active" id="login"></div>
+<div id="slmsLoginOverlay" style="display:none;"></div>
+
+<!-- ═══════════════════ DASHBOARD ═══════════════════ -->
+<div class="page" id="dashboard">
+  <div class="dash-top">
+    <div class="dash-logo">
+      <div class="dash-logo-icon">
+        <svg viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="4" width="15" height="15" rx="2" fill="white" opacity="0.9"/>
+          <rect x="21" y="4" width="15" height="15" rx="2" fill="white" opacity="0.5"/>
+          <rect x="4" y="21" width="15" height="15" rx="2" fill="white" opacity="0.5"/>
+          <rect x="21" y="21" width="15" height="15" rx="2" fill="white" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="dash-logo-divider"></div>
+      <span class="dash-logo-name">Sustainability Dashboard</span>
+    </div>
+    <div class="dash-user">
+      <span class="dash-user-name" id="dashUserName"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e786838a8e89a784888a9786899ec984888a">[email&#160;protected]</a></span>
+      <div class="user-avatar" id="userAvatar">A</div>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <!-- SIDEBAR -->
+    <nav class="sidebar" id="mainSidebar">
+
+      <!-- Toggle -->
+      <button class="sidebar-toggle" id="sidebarToggle" title="Toggle menu" aria-label="Toggle sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+             stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6"  x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="sidebar-section">Main Menu</div>
+
+      <!-- Overview -->
+      <div class="nav-item active" data-panel="overview" data-tooltip="Overview">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3"  y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </span>
+        <span class="nav-label">Overview</span>
+      </div>
+
+      <!-- Compliance group -->
+      <div class="nav-group open" id="navGroupTrace">
+        <div class="nav-group-header" id="navGroupTraceHeader" data-tooltip="Compliance">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="6"  x2="20" y2="6"/>
+              <line x1="4" y1="12" x2="20" y2="12"/>
+              <line x1="4" y1="18" x2="14" y2="18"/>
+            </svg>
+          </span>
+          <span class="nav-label">Compliance</span>
+          <span class="nav-group-chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </span>
+        </div>
+
+        <div class="nav-group-children">
+
+          <div class="nav-item" data-panel="supplier-dd" data-tooltip="Supplier Due Diligence">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </span>
+            <span class="nav-label">Supplier Due Diligence</span>
+          </div>
+
+          <div class="nav-item" data-panel="mill-onboarding" data-tooltip="Mill Onboarding">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                <line x1="12" y1="12" x2="12" y2="16"/>
+                <line x1="10" y1="14" x2="14" y2="14"/>
+              </svg>
+            </span>
+            <span class="nav-label">Mill Onboarding</span>
+          </div>
+
+          <div class="nav-item" data-panel="ttm-ttp" data-tooltip="TTM & TTP Data">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6"  y1="20" x2="6"  y2="14"/>
+              </svg>
+            </span>
+            <span class="nav-label">TTM &amp; TTP Data</span>
+          </div>
+
+          <div class="nav-item" data-panel="grievance" data-tooltip="Grievance Monitoring">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9"  x2="12" y2="13"/>
+                <circle cx="12" cy="17" r="0.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span class="nav-label">Grievance Monitoring</span>
+          </div>
+
+          <div class="nav-item" data-panel="bl-monitoring" data-tooltip="BL Monitoring">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <line x1="2" y1="20" x2="22" y2="20"/>
+                <path d="M5 20V8l7-5 7 5v12"/>
+                <rect x="9" y="15" width="6" height="5" rx="0.5"/>
+              </svg>
+            </span>
+            <span class="nav-label">BL Monitoring</span>
+          </div>
+
+        </div>
+      </div><!-- /nav-group -->
+
+      <!-- Sign Out — pinned bottom -->
+      <div class="sidebar-signout">
+        <button class="sidebar-signout-btn" id="btn-logout" aria-label="Sign out">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </span>
+          <span class="nav-label">Sign Out</span>
+        </button>
+      </div>
+
+    </nav><!-- /sidebar -->
+
+    <!-- MAIN AREA -->
+    <main class="main-content">
+
+<!-- jsPDF + AutoTable: loaded once, cached by browser. Pure CDN, no CORS. -->
+<script>
+  (function() {
+    function loadScript(src, id) {
+      if (document.getElementById(id)) return;
+      var s = document.createElement('script');
+      s.id = id; s.src = src;
+      document.head.appendChild(s);
+    }
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js', 'jspdf-core');
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js', 'jspdf-autotable');
+  })();
+</script>
+<div class="panel" id="panel-supplier-dd">
+        <div class="panel-box">
+          <div class="panel-title-row">
+            <div>
+              <h2>Supplier Due Diligence</h2>
+              <p class="panel-subtitle">Upload an Excel file to extract and view all data in a clean table.</p>
+            </div>
+          </div>
+          <div class="panel-card" style="margin-bottom:12px;padding:12px;position:relative;">
+            <label for="scr-saved-select" style="display:block;font-size:10px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:#8B1A1A;margin-bottom:10px;">Saved screening (Draft / Submitted)</label>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              <button type="button" id="scr-refresh-list" style="padding:9px 20px;background:#fff;border:1.5px solid rgba(139,26,26,0.3);border-radius:8px;color:#7a2d2d;font-size:13px;font-weight:600;font-family:Inter,sans-serif;cursor:pointer;">Refresh List</button>
+              <button type="button" id="scr-exit-load" style="padding:9px 20px;background:#fff7ed;border:1.5px solid rgba(194,65,12,0.3);border-radius:8px;color:#9a3412;font-size:13px;font-weight:600;font-family:Inter,sans-serif;cursor:pointer;">Exit Load Mode</button>
+            </div>
+            <select id="scr-saved-select" class="scr-saved-select-sr" aria-hidden="true" tabindex="-1">
+              <option value="">— Select saved screening —</option>
+            </select>
+            <div id="scr-saved-list-wrap" class="scr-saved-list-outer"></div>
+          </div>
+          <div class="panel-card" style="margin-bottom:16px;">
+            <div class="field" style="margin-bottom:12px;">
+              <label for="supplierExcelFile">Choose Excel file (.xlsx or .xls)</label>
+              <input type="file" id="supplierExcelFile" accept=".xlsx,.xls" onchange="supplierHandleFileUpload(event)">
+            </div>
+            <div class="field" id="supplierSheetSelectContainer" style="display:none;margin-bottom:0;">
+              <label for="supplierSheetSelect">Select sheet</label>
+              <select id="supplierSheetSelect" onchange="supplierDisplaySelectedSheet()"></select>
+            </div>
+          </div>
+          <div id="supplierExcelData" style="overflow-x:auto;width:100%;"></div>
+        </div>
+      </div>
+      <div class="panel active" id="panel-overview">
+        <div id="overview-root" aria-label="Dashboard overview"></div>
+      </div>
+
+<!-- ── MILL ONBOARDING PANEL ── -->
+      <div class="panel active" id="panel-mill-onboarding">
+        <div class="breadcrumb">Dashboard <span>/ Mill Onboarding</span></div>
+        <div class="page-header">
+          <h1>Mill Onboarding</h1>
+          <p>Manage and track all mill profiles in your supply chain network</p>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-card-num" id="stat-total">—</div>
+            <div class="stat-card-label">Total Mills</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-num" id="stat-groups">—</div>
+            <div class="stat-card-label">Groups</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-num" id="stat-high-risk">—</div>
+            <div class="stat-card-label">High Risk</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-num" id="stat-nbl">—</div>
+            <div class="stat-card-label">No Buy List</div>
+          </div>
+        </div>
+
+        <!-- ── TOP 5 RECENTLY UPDATED ── -->
+        <div id="top5-card" style="display:none;background:white;border:1px solid rgba(139,26,26,0.1);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 2px 12px rgba(139,26,26,0.06);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#8B1A1A,#C03030);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#1A0A0A;letter-spacing:0.2px;">Recently Updated</div>
+              <div style="font-size:11px;color:#9C8080;margin-top:1px;">Top 5 companies — most recently saved to database</div>
+            </div>
+          </div>
+          <div id="top5-list" style="display:flex;flex-direction:column;gap:6px;"></div>
+        </div>
+
+        <div class="filters">
+          <button class="filter-chip active" data-filter="All">All Mills</button>
+          <button class="filter-chip" data-filter="NBL">NBL</button>
+          <button class="filter-chip" data-filter="Non-NBL">Non-NBL</button>
+          <button class="filter-chip filter-chip-task" data-filter="Task List">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px;"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Task List
+          </button>
+        </div>
+
+        <!-- Task List Panel (shown when filter=Task List) -->
+        <div id="mill-task-list-panel" style="display:none;">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#1A0A0A;">Submitted Supplier Screenings</div>
+              <div style="font-size:12px;color:#9C8080;margin-top:2px;">Screenings yang sudah disubmit — klik untuk tambah ke Mill Registry</div>
+            </div>
+            <span id="mill-task-count" style="font-size:12px;font-weight:700;color:#8B1A1A;background:rgba(139,26,26,0.08);padding:4px 12px;border-radius:999px;">— entries</span>
+          </div>
+          <div id="mill-task-list-body" style="display:flex;flex-direction:column;gap:8px;"></div>
+          <div id="mill-task-empty" style="display:none;padding:40px;text-align:center;color:#9C8080;font-size:14px;">
+            Belum ada submitted screening yang tersedia.<br>
+            <span style="font-size:12px;">Submit screening di Supplier Due Diligence terlebih dahulu.</span>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Mill Registry</h3>
+            <div class="table-actions">
+              <button class="btn-sm btn-filled" id="btn-add-mill">+ Add Mill</button>
+            </div>
+          </div>
+          <div class="search-bar">
+            <span class="search-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></span>
+            <input type="text" id="millSearch" placeholder="Search mill name, group, province..." />
+            <button class="search-clear" id="millSearchClear">
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div id="mill-loading" style="padding:40px;text-align:center;color:#9C8A8A;font-size:14px;">Loading data...</div>
+          <div>
+            <table id="millTable" style="display:none;">
+              <thead>
+                <tr>
+                  <th>Group Name</th>
+                  <th>Company Name</th>
+                  <th>Mill Name</th>
+                  <th>Province</th>
+                  <th>Supplier Status</th>
+                  <th>Risk Level</th>
+                  <th>No Buy List</th>
+                  <th>Certification</th>
+                  <th>Facility CPO</th>
+                  <th>Facility PK</th>
+                  <th>Product Supply</th>
+                </tr>
+              </thead>
+              <tbody id="millTableBody"></tbody>
+            </table>
+          </div>
+          <div id="mill-error" style="display:none;padding:32px;text-align:center;color:#c0392b;font-size:14px;"></div>
+        </div>
+      </div>
+      <!-- ── TTM & TTP PANEL ── -->
+      <div class="panel" id="panel-ttm-ttp">
+        <div class="breadcrumb">Dashboard <span>/ Monitoring TTM/TTP</span></div>
+        <div class="page-header">
+          <h1>Monitoring TTM/TTP</h1>
+          <p>Trade partner and trade point monitoring data</p>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-card-num" id="ttp-stat-total">—</div>
+            <div class="stat-card-label">Total Records</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-num" id="ttp-stat-loaded">—</div>
+            <div class="stat-card-label">Loaded</div>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-header">
+            <h3>TTM/TTP Registry</h3>
+            <div class="table-actions">
+              <button class="btn-sm btn-filled" id="btn-add-ttp">+ Add Record</button>
+            </div>
+          </div>
+          <!-- ── TTP TOOLBAR ── -->
+          <div class="ttp-toolbar">
+            <!-- Select by Column (dynamic) -->
+            <div class="ttp-dropdown-wrap" id="ttpSelectWrap">
+              <button class="ttp-btn-select" id="ttpBtnSelect">
+                <span class="ttp-btn-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+                <span id="ttpBtnSelectLabel">Select</span>
+                <span class="ttp-btn-icon" style="opacity:0.5;"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="ttp-dropdown-panel" id="ttpSelectPanel" style="min-width:320px;">
+                <div class="ttp-dropdown-head">
+                  <span class="ttp-dropdown-title">Filter by Kolom</span>
+                  <div class="ttp-dropdown-actions">
+                    <button id="ttpSelectAll">All</button>
+                    <button id="ttpSelectNone">None</button>
+                  </div>
+                </div>
+                <div style="padding:8px 12px 4px;border-bottom:1px solid rgba(74,28,28,0.08);">
+                  <div style="font-size:10px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;color:#9C8A8A;margin-bottom:6px;">Pilih Kolom</div>
+                  <div id="ttpColPickerList" style="display:flex;flex-wrap:wrap;gap:4px;max-height:80px;overflow-y:auto;"></div>
+                </div>
+                <div class="ttp-dropdown-search">
+                  <input type="text" id="ttpCompanySearch" placeholder="Cari nilai..." />
+                </div>
+                <div class="ttp-dropdown-list" id="ttpCompanyList"></div>
+              </div>
+            </div>
+
+            <!-- Filter Columns -->
+            <div class="ttp-dropdown-wrap" id="ttpFilterWrap">
+              <button class="ttp-btn-filter" id="ttpBtnFilter">
+                <span class="ttp-btn-icon"><svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>
+                Filter Kolom
+                <span class="ttp-btn-icon" style="opacity:0.5;"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+              </button>
+              <div class="ttp-dropdown-panel" id="ttpFilterPanel" style="left:0;">
+                <div class="ttp-dropdown-head">
+                  <span class="ttp-dropdown-title">Tampilkan Kolom</span>
+                  <div class="ttp-dropdown-actions">
+                    <button id="ttpColAll">Semua</button>
+                    <button id="ttpColNone">Kosong</button>
+                  </div>
+                </div>
+                <div class="ttp-dropdown-list" id="ttpColumnList"></div>
+              </div>
+            </div>
+
+            <!-- Export XLSX -->
+            <button class="ttp-btn-export-xlsx" id="btn-export-ttp-xlsx" disabled>
+              <span class="ttp-btn-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+              Export XLSX
+            </button>
+
+            <div class="ttp-selection-info" id="ttpSelectionInfo" style="display:none;">
+              <span id="ttpSelectionText"></span>
+            </div>
+          </div>
+
+          <!-- View toggle: Grouped / Flat -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px 6px;border-bottom:1px solid rgba(74,28,28,0.06);">
+            <div class="ttp-view-toggle">
+              <button class="ttp-view-btn active" id="ttpViewGrouped" title="Grouped by Mill Name">
+                <svg viewBox="0 0 24 24"><path d="M3 6h7v7H3z"/><path d="M14 6h7v7h-7z"/><path d="M3 17h7v4H3z"/><path d="M14 17h7v4h-7z"/></svg>
+                Grouped by Mill
+              </button>
+              <button class="ttp-view-btn" id="ttpViewFlat" title="Flat / original view">
+                <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                Flat (All Rows)
+              </button>
+            </div>
+            <div style="font-size:11px;color:#B09A9A;" id="ttpGroupInfo"></div>
+          </div>
+          <div class="search-bar">
+            <span class="search-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></span>
+            <input type="text" id="ttpSearch" placeholder="Search..." />
+            <button class="search-clear" id="ttpSearchClear">
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div id="ttp-loading" style="padding:40px;text-align:center;color:#9C8A8A;font-size:14px;">Loading data...</div>
+          <div style="overflow-x:auto;">
+            <table id="ttpTable" style="display:none;">
+              <thead id="ttpTableHead"></thead>
+              <tbody id="ttpTableBody"></tbody>
+            </table>
+          </div>
+          <div id="ttp-error" style="display:none;padding:32px;text-align:center;color:#c0392b;font-size:14px;"></div>
+        </div>
+      </div>
+
+      <!-- ── GRIEVANCE PANEL ── -->
+      <div class="panel" id="panel-grievance">
+        <div class="breadcrumb">Dashboard <span>/ Grievance Monitoring</span></div>
+        <div class="page-header">
+          <h1>Grievance Monitoring</h1>
+          <p>Track and manage supply chain grievances and resolutions</p>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-card-num" id="grv-stat-total">—</div><div class="stat-card-label">Total</div></div>
+          <div class="stat-card"><div class="stat-card-num" id="grv-stat-open">—</div><div class="stat-card-label">Open</div></div>
+          <div class="stat-card"><div class="stat-card-num" id="grv-stat-closed">—</div><div class="stat-card-label">Closed</div></div>
+          <div class="stat-card"><div class="stat-card-num" id="grv-stat-high">—</div><div class="stat-card-label">High Risk</div></div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Grievance Registry</h3>
+            <div class="table-actions">
+              <button class="btn-sm btn-outline" id="btn-export-grv">Export CSV</button>
+              <button class="btn-sm btn-filled" id="btn-add-grv">+ Add Grievance</button>
+            </div>
+          </div>
+          <div class="search-bar">
+            <span class="search-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></span>
+            <input type="text" id="grvSearch" placeholder="Search grievance ID, subject, category..." />
+            <button class="search-clear" id="grvSearchClear">
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div id="grv-loading" style="padding:40px;text-align:center;color:#9C8A8A;font-size:14px;">Loading data...</div>
+          <div style="overflow-x:auto;">
+            <table id="grvTable" style="display:none;">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Subject</th>
+                  <th>Group</th>
+                  <th>Risk</th>
+                  <th>Status</th>
+                  <th>Date Closed</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="grvTableBody"></tbody>
+            </table>
+          </div>
+          <div id="grv-error" style="display:none;padding:32px;text-align:center;color:#c0392b;font-size:14px;"></div>
+        </div>
+      </div>
+      </div>
+
+      <!-- ── SUPPLIER DUE DILIGENCE PANEL ── -->
+      <!-- ── BL MONITORING PANEL ── -->
+      <div class="panel" id="panel-bl-monitoring">
+        <div class="coming-soon">
+          <div class="cs-icon">🚢</div>
+          <div class="cs-badge">Coming Soon</div>
+          <div class="cs-title">BL Monitoring</div>
+          <div class="cs-sub">Bill of Lading tracking and shipment monitoring module — linking logistics data with your supply chain records.</div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════════════ MODAL ═══════════════════ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Add Record</h3>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-form-grid" id="modalFormGrid"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" id="modalCancel">Cancel</button>
+      <button class="btn-save" id="modalSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CONFIRM ═══════════════════ -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-icon">🗑️</div>
+    <h4>Delete this record?</h4>
+    <p>This action cannot be undone. The record will be permanently removed from the database.</p>
+    <div class="confirm-btns">
+      <button class="btn-cancel" id="confirmCancel">Cancel</button>
+      <button class="btn-danger" id="confirmDelete">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ MILL PROFILE POPUP ═══════════════════ -->
+<div class="mill-profile-overlay" id="millProfileOverlay">
+  <div class="mill-profile-box">
+    <div class="mill-profile-head">
+      <div class="mill-profile-head-left">
+        <h2 id="mp-mill-name">Mill Name</h2>
+        <div class="mp-sub" id="mp-mill-sub">UML ID • Group Name</div>
+      </div>
+      <button class="mill-profile-close" id="millProfileClose">✕</button>
+    </div>
+    <div class="mill-profile-body" id="millProfileBody"></div>
+  </div>
+</div>
+
+<!-- ── TRACEABILITY SCREENING MODALS ─────────────────── -->
+
+<!-- Modal 1: Type Selector -->
+<div id="tml-type-overlay" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(10,4,4,0.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:16px;width:480px;max-width:94vw;padding:32px;box-shadow:0 24px 72px rgba(10,4,4,0.28);animation:modalIn 0.28s cubic-bezier(.16,1,.3,1);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+      <div style="font-size:18px;font-weight:700;color:#1A0A0A;font-family:Playfair Display,serif;">Start Screening</div>
+      <button onclick="document.getElementById('tml-type-overlay').style.display='none'" style="width:30px;height:30px;border-radius:50%;border:none;background:rgba(74,28,28,0.08);cursor:pointer;font-size:16px;color:#5F4A48;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div style="font-size:13px;color:#9C8080;margin-bottom:24px;">Pilih jenis screening yang akan dilakukan</div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+      <label id="type-card-trace" onclick="window._tmlScreeningType='traceability';window.tmlSelectTypeCard('trace')" style="display:flex;align-items:flex-start;gap:14px;cursor:pointer;padding:16px 18px;border-radius:10px;border:1.5px solid rgba(74,28,28,0.15);transition:all 0.18s;position:relative;">
+        <div style="width:38px;height:38px;border-radius:8px;background:rgba(139,26,26,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B1A1A" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><polyline points="15 11 11 11 11 7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:600;color:#1A0A0A;margin-bottom:3px;">Traceability</div>
+          <div style="font-size:12px;color:#9C8080;line-height:1.5;">Screening berdasarkan <strong>Mill Name</strong> — koordinat, kawasan hutan, gambut, moratorium, deforestasi</div>
+        </div>
+        <div id="type-check-trace" style="display:none;position:absolute;top:12px;right:14px;width:20px;height:20px;border-radius:50%;background:#8B1A1A;display:flex;align-items:center;justify-content:center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </label>
+      <label id="type-card-ffb" onclick="window._tmlScreeningType='ffb';window.tmlSelectTypeCard('ffb')" style="display:flex;align-items:flex-start;gap:14px;cursor:pointer;padding:16px 18px;border-radius:10px;border:1.5px solid rgba(74,28,28,0.15);transition:all 0.18s;position:relative;">
+        <div style="width:38px;height:38px;border-radius:8px;background:rgba(139,26,26,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B1A1A" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:600;color:#1A0A0A;margin-bottom:3px;">FFB Supplier List</div>
+          <div style="font-size:12px;color:#9C8080;line-height:1.5;">Screening berdasarkan <strong>Supplier Name</strong> — koordinat, kawasan hutan, gambut, moratorium, jarak ke mill, deforestasi, burn area, village risk</div>
+        </div>
+        <div id="type-check-ffb" style="display:none;position:absolute;top:12px;right:14px;width:20px;height:20px;border-radius:50%;background:#8B1A1A;display:flex;align-items:center;justify-content:center;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </label>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button onclick="document.getElementById('tml-type-overlay').style.display='none'" style="padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);background:white;color:#5F4A48;font-family:Inter,sans-serif;font-size:13px;cursor:pointer;">Batal</button>
+      <button onclick="window.tmlTypeNext()" style="padding:9px 20px;border-radius:8px;border:none;background:#8B1A1A;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Lanjut →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 1b: Pick Mill (Traceability) -->
+<div id="tml-pick-overlay" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(10,4,4,0.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:16px;width:460px;max-width:94vw;padding:32px;box-shadow:0 24px 72px rgba(10,4,4,0.28);animation:modalIn 0.28s cubic-bezier(.16,1,.3,1);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:#1A0A0A;font-family:Playfair Display,serif;">Screening Traceability</div>
+        <div style="font-size:13px;color:#9C8080;margin-top:3px;">Pilih Mill yang akan di-screening. Draft/Submitted akan ditandai dan bisa dibuka kembali.</div>
+      </div>
+      <button onclick="document.getElementById('tml-pick-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="width:30px;height:30px;border-radius:50%;border:none;background:rgba(74,28,28,0.08);cursor:pointer;font-size:16px;color:#5F4A48;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div id="tml-mill-list" style="max-height:240px;overflow-y:auto;border:1.5px solid rgba(74,28,28,0.12);border-radius:10px;margin-bottom:20px;"></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button onclick="document.getElementById('tml-pick-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);background:white;color:#5F4A48;font-family:Inter,sans-serif;font-size:13px;cursor:pointer;">← Kembali</button>
+      <button onclick="window.openTmlScreeningForm()" style="padding:9px 20px;border-radius:8px;border:none;background:#8B1A1A;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Lanjut →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 1c: Pick Supplier (FFB Supplier List) -->
+<div id="ffb-pick-overlay" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(10,4,4,0.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:16px;width:460px;max-width:94vw;padding:32px;box-shadow:0 24px 72px rgba(10,4,4,0.28);animation:modalIn 0.28s cubic-bezier(.16,1,.3,1);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:#1A0A0A;font-family:Playfair Display,serif;">Screening FFB Supplier List</div>
+        <div style="font-size:13px;color:#9C8080;margin-top:3px;">Pilih Supplier yang akan di-screening. Draft/Submitted akan ditandai dan bisa dibuka kembali.</div>
+      </div>
+      <button onclick="document.getElementById('ffb-pick-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="width:30px;height:30px;border-radius:50%;border:none;background:rgba(74,28,28,0.08);cursor:pointer;font-size:16px;color:#5F4A48;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div id="ffb-supplier-list" style="max-height:240px;overflow-y:auto;border:1.5px solid rgba(74,28,28,0.12);border-radius:10px;margin-bottom:20px;"></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button onclick="document.getElementById('ffb-pick-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);background:white;color:#5F4A48;font-family:Inter,sans-serif;font-size:13px;cursor:pointer;">← Kembali</button>
+      <button onclick="window.openFfbScreeningForm()" style="padding:9px 20px;border-radius:8px;border:none;background:#8B1A1A;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Lanjut →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: Screening Form -->
+<div id="tml-form-overlay" style="display:none;position:fixed;inset:0;z-index:1001;background:rgba(10,4,4,0.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:white;border-radius:16px;width:600px;max-width:96vw;max-height:90vh;overflow-y:auto;padding:32px;box-shadow:0 24px 72px rgba(10,4,4,0.28);animation:modalIn 0.28s cubic-bezier(.16,1,.3,1);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+      <div style="font-size:18px;font-weight:700;color:#1A0A0A;font-family:Playfair Display,serif;">Form Screening Traceability</div>
+      <button onclick="document.getElementById('tml-form-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="width:30px;height:30px;border-radius:50%;border:none;background:rgba(74,28,28,0.08);cursor:pointer;font-size:16px;color:#5F4A48;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div id="tml-form-mill-label" style="font-size:13px;color:#8B1A1A;font-weight:600;margin-bottom:8px;padding:8px 12px;background:rgba(139,26,26,0.06);border-radius:7px;border-left:3px solid #8B1A1A;"></div>
+  <div id="tml-form-status" style="font-size:12px;color:#8B1A1A;font-weight:600;margin-bottom:20px;"></div>
+
+    <!-- 1. Valid Coordinate -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">1. Valid Coordinate</div>
+      <div style="display:flex;gap:10px;">
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);font-size:13px;flex:1;justify-content:center;" onclick="window.tmlSetYN('coord','Yes',this)">
+          <input type="radio" name="tml-coord" value="Yes" style="display:none;"> <span style="font-weight:600;">Yes</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);font-size:13px;flex:1;justify-content:center;" onclick="window.tmlSetYN('coord','No',this)">
+          <input type="radio" name="tml-coord" value="No" style="display:none;"> <span style="font-weight:600;">No</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 2. Forest Area -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">2. Forest Area</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="fa-apl" onchange="window.tmlToggleHa(this,'fa-apl-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">APL</span>
+          <input type="number" id="fa-apl-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="fa-hpk" onchange="window.tmlToggleHa(this,'fa-hpk-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">HPK</span>
+          <input type="number" id="fa-hpk-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="fa-hp" onchange="window.tmlToggleHa(this,'fa-hp-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">HP</span>
+          <input type="number" id="fa-hp-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="fa-hl" onchange="window.tmlToggleHa(this,'fa-hl-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">HL</span>
+          <input type="number" id="fa-hl-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="fa-ksa" onchange="window.tmlToggleHa(this,'fa-ksa-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">KSA/KPA</span>
+          <input type="number" id="fa-ksa-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 3. Peatland -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">3. Peatland</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="pl-no" onchange="window.tmlToggleHa(this,'pl-no-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">No</span>
+          <input type="number" id="pl-no-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="pl-prot" onchange="window.tmlToggleHa(this,'pl-prot-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">Protected Peat</span>
+          <input type="number" id="pl-prot-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="pl-cult" onchange="window.tmlToggleHa(this,'pl-cult-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">Cultivated Peat</span>
+          <input type="number" id="pl-cult-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 4. Moratorium -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">4. Moratorium</div>
+      <div style="display:flex;gap:10px;margin-bottom:10px;">
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);font-size:13px;flex:1;justify-content:center;" onclick="window.tmlSetYN('mora','Yes',this);document.getElementById('mora-ha-wrap').style.display='flex'">
+          <input type="radio" name="tml-mora" value="Yes" style="display:none;"><span style="font-weight:600;">Yes</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);font-size:13px;flex:1;justify-content:center;" onclick="window.tmlSetYN('mora','No',this);document.getElementById('mora-ha-wrap').style.display='none';document.getElementById('mora-ha').value=''">
+          <input type="radio" name="tml-mora" value="No" style="display:none;"><span style="font-weight:600;">No</span>
+        </label>
+      </div>
+      <div id="mora-ha-wrap" style="display:none;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);background:#fdfafa;">
+        <span style="font-size:13px;color:#5F4A48;font-weight:500;flex:1;">Luas area moratorium</span>
+        <input type="number" id="mora-ha" placeholder="Ha" min="0" step="0.01" style="width:100px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+        <span style="font-size:12px;color:#9C8080;">ha</span>
+      </div>
+    </div>
+
+    <!-- 5. Deforestation Buffer -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">5. Deforestation Buffer 50KM</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);">
+        <span style="font-size:13px;color:#5F4A48;font-weight:500;flex:1;">Luas area buffer</span>
+        <input type="number" id="defbuf-ha" placeholder="Ha" min="0" step="0.01" style="width:120px;padding:8px 12px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:13px;font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+        <span style="font-size:12px;color:#9C8080;">ha</span>
+      </div>
+    </div>
+
+    <div style="font-size:11px;color:#9C8080;margin-bottom:12px;padding:8px 12px;background:rgba(74,28,28,0.04);border-radius:6px;border-left:2px solid rgba(74,28,28,0.2);">
+      💡 Data screening akan dikirim ke Sheets saat Anda klik <strong>Save as Draft / Submit</strong> di form utama.
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;border-top:1px solid rgba(74,28,28,0.08);padding-top:20px;">
+      <button onclick="document.getElementById('tml-form-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="padding:10px 20px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);background:white;color:#5F4A48;font-family:Inter,sans-serif;font-size:13px;cursor:pointer;">← Kembali</button>
+      <button onclick="window.deleteTmlScreening()" style="padding:10px 24px;border-radius:8px;border:none;background:#EF4444;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Delete</button>
+      <button onclick="window.saveTmlScreening()" style="padding:10px 24px;border-radius:8px;border:none;background:#10B981;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Simpan &amp; Kembali</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3: Result -->
+<div id="tml-result-overlay" style="display:none;position:fixed;inset:0;z-index:1002;background:rgba(10,4,4,0.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:white;border-radius:16px;width:540px;max-width:96vw;max-height:85vh;overflow-y:auto;padding:32px;box-shadow:0 24px 72px rgba(10,4,4,0.28);animation:modalIn 0.28s cubic-bezier(.16,1,.3,1);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div style="font-size:18px;font-weight:700;color:#1A0A0A;font-family:Playfair Display,serif;">Hasil Screening Traceability</div>
+      <button onclick="document.getElementById('tml-result-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="width:30px;height:30px;border-radius:50%;border:none;background:rgba(74,28,28,0.08);cursor:pointer;font-size:16px;color:#5F4A48;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div id="tml-result-body"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:20px;border-top:1px solid rgba(74,28,28,0.08);padding-top:20px;">
+      <button onclick="document.getElementById('tml-result-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="padding:10px 24px;border-radius:8px;border:none;background:#8B1A1A;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<!-- FFB Screening Form Modal -->
+<div id="ffb-form-overlay" style="display:none;position:fixed;inset:0;z-index:1001;background:rgba(10,4,4,0.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:white;border-radius:16px;width:620px;max-width:96vw;max-height:90vh;overflow-y:auto;padding:32px;box-shadow:0 24px 72px rgba(10,4,4,0.28);animation:modalIn 0.28s cubic-bezier(.16,1,.3,1);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+      <div style="font-size:18px;font-weight:700;color:#1A0A0A;font-family:Playfair Display,serif;">Form Screening FFB Supplier List</div>
+      <button onclick="document.getElementById('ffb-form-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="width:30px;height:30px;border-radius:50%;border:none;background:rgba(74,28,28,0.08);cursor:pointer;font-size:16px;color:#5F4A48;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div id="ffb-form-supplier-label" style="font-size:13px;color:#8B1A1A;font-weight:600;margin-bottom:8px;padding:8px 12px;background:rgba(139,26,26,0.06);border-radius:7px;border-left:3px solid #8B1A1A;"></div>
+    <div id="ffb-form-status" style="font-size:12px;color:#8B1A1A;font-weight:600;margin-bottom:20px;"></div>
+
+    <!-- 1. Valid Coordinate -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">1. Valid Coordinate</div>
+      <div style="display:flex;gap:10px;">
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);font-size:13px;flex:1;justify-content:center;" onclick="window.ffbSetYN('coord','Yes',this)">
+          <input type="radio" name="ffb-coord" value="Yes" style="display:none;"> <span style="font-weight:600;">Yes</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);font-size:13px;flex:1;justify-content:center;" onclick="window.ffbSetYN('coord','No',this)">
+          <input type="radio" name="ffb-coord" value="No" style="display:none;"> <span style="font-weight:600;">No</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 2. Forest Area -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">2. Forest Area</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="ffb-fa-apl" onchange="window.ffbToggleHa(this,'ffb-fa-apl-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">APL</span>
+          <input type="number" id="ffb-fa-apl-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="ffb-fa-hpk" onchange="window.ffbToggleHa(this,'ffb-fa-hpk-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">HPK</span>
+          <input type="number" id="ffb-fa-hpk-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="ffb-fa-hp" onchange="window.ffbToggleHa(this,'ffb-fa-hp-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">HP</span>
+          <input type="number" id="ffb-fa-hp-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="ffb-fa-hl" onchange="window.ffbToggleHa(this,'ffb-fa-hl-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">HL</span>
+          <input type="number" id="ffb-fa-hl-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="ffb-fa-ksa" onchange="window.ffbToggleHa(this,'ffb-fa-ksa-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">KSA/KPA</span>
+          <input type="number" id="ffb-fa-ksa-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 3. Peatland -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">3. Peatland</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="ffb-pl-no" onchange="window.ffbToggleHa(this,'ffb-pl-no-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">No</span>
+          <input type="number" id="ffb-pl-no-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="ffb-pl-prot" onchange="window.ffbToggleHa(this,'ffb-pl-prot-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">Protected Peat</span>
+          <input type="number" id="ffb-pl-prot-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);font-size:13px;">
+          <input type="checkbox" id="ffb-pl-cult" onchange="window.ffbToggleHa(this,'ffb-pl-cult-ha')" style="width:16px;height:16px;cursor:pointer;accent-color:#8B1A1A;">
+          <span style="flex:1;font-weight:500;">Cultivated Peat</span>
+          <input type="number" id="ffb-pl-cult-ha" disabled placeholder="Ha" min="0" step="0.01" style="width:90px;padding:6px 10px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:12px;font-family:Inter,sans-serif;background:#f8f6f5;color:#9C8080;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;width:20px;">ha</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 4. Moratorium -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">4. Moratorium</div>
+      <div style="display:flex;gap:10px;margin-bottom:10px;">
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);font-size:13px;flex:1;justify-content:center;" onclick="window.ffbSetYN('mora','Yes',this)">
+          <input type="radio" name="ffb-mora" value="Yes" style="display:none;"> <span style="font-weight:600;">Yes</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:9px 18px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);font-size:13px;flex:1;justify-content:center;" onclick="window.ffbSetYN('mora','No',this)">
+          <input type="radio" name="ffb-mora" value="No" style="display:none;"> <span style="font-weight:600;">No</span>
+        </label>
+      </div>
+      <div id="ffb-mora-ha-wrap" style="display:none;">
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);">
+          <span style="font-size:13px;color:#5F4A48;font-weight:500;flex:1;">Luas moratorium</span>
+          <input type="number" id="ffb-mora-ha" placeholder="Ha" min="0" step="0.01" style="width:120px;padding:8px 12px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:13px;font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+          <span style="font-size:12px;color:#9C8080;">ha</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Distance to Mill -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">5. Distance to Mill</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);">
+        <input type="number" id="ffb-dist-km" placeholder="Jarak ke mill" min="0" step="0.1" style="flex:1;padding:8px 12px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:13px;font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+        <span style="font-size:12px;color:#9C8080;white-space:nowrap;">km</span>
+      </div>
+    </div>
+
+    <div style="height:1px;background:rgba(74,28,28,0.08);margin:20px 0;"></div>
+
+    <!-- 6. Deforestation -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">6. Deforestation</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);">
+        <input type="number" id="ffb-defor" placeholder="Ha" min="0" step="0.01" style="flex:1;padding:8px 12px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:13px;font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+        <span style="font-size:12px;color:#9C8080;">ha</span>
+      </div>
+    </div>
+
+    <!-- 7. Burn Area -->
+    <div style="margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">7. Burn Area</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);">
+        <input type="number" id="ffb-burn" placeholder="Ha" min="0" step="0.01" style="flex:1;padding:8px 12px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:13px;font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+        <span style="font-size:12px;color:#9C8080;">ha</span>
+      </div>
+    </div>
+
+    <!-- 8. Village Risk -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:13px;font-weight:700;color:#1A0A0A;margin-bottom:8px;">8. Village Risk</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.12);">
+        <input type="text" id="ffb-village-risk" placeholder="e.g. Low / Medium / High" style="flex:1;padding:8px 12px;border:1.5px solid rgba(74,28,28,0.15);border-radius:6px;font-size:13px;font-family:Inter,sans-serif;" onfocus="this.style.borderColor='#8B1A1A'" onblur="this.style.borderColor='rgba(74,28,28,0.15)'">
+      </div>
+    </div>
+
+    <div style="font-size:11px;color:#9C8080;margin-bottom:12px;padding:8px 12px;background:rgba(74,28,28,0.04);border-radius:6px;border-left:2px solid rgba(74,28,28,0.2);">
+      💡 Data screening akan dikirim ke Sheets saat Anda klik <strong>Save as Draft / Submit</strong> di form utama.
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;border-top:1px solid rgba(74,28,28,0.08);padding-top:20px;">
+      <button onclick="document.getElementById('ffb-form-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="padding:10px 20px;border-radius:8px;border:1.5px solid rgba(74,28,28,0.15);background:white;color:#5F4A48;font-family:Inter,sans-serif;font-size:13px;cursor:pointer;">← Kembali</button>
+      <button onclick="window.deleteFfbScreening()" style="padding:10px 24px;border-radius:8px;border:none;background:#EF4444;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Delete</button>
+      <button onclick="window.saveFfbScreening()" style="padding:10px 24px;border-radius:8px;border:none;background:#10B981;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Simpan &amp; Kembali</button>
+    </div>
+  </div>
+</div>
+
+<!-- FFB Result Modal -->
+<div id="ffb-result-overlay" style="display:none;position:fixed;inset:0;z-index:1002;background:rgba(10,4,4,0.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:white;border-radius:16px;width:540px;max-width:96vw;max-height:85vh;overflow-y:auto;padding:32px;box-shadow:0 24px 72px rgba(10,4,4,0.28);animation:modalIn 0.28s cubic-bezier(.16,1,.3,1);">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div style="font-size:18px;font-weight:700;color:#1A0A0A;font-family:Playfair Display,serif;">Hasil Screening FFB Supplier List</div>
+      <button onclick="document.getElementById('ffb-result-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="width:30px;height:30px;border-radius:50%;border:none;background:rgba(74,28,28,0.08);cursor:pointer;font-size:16px;color:#5F4A48;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div id="ffb-result-body"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:20px;border-top:1px solid rgba(74,28,28,0.08);padding-top:20px;">
+      <button onclick="document.getElementById('ffb-result-overlay').style.display='none';document.getElementById('tml-type-overlay').style.display='flex'" style="padding:10px 24px;border-radius:8px;border:none;background:#8B1A1A;color:white;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Tutup</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
